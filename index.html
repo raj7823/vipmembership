@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:"Nunito",sans-serif;background:#eef0f3;color:#1a1a1a;min-height:100vh;overflow-x:hidden}
+.topnav{background:#fff;border-bottom:1px solid #e5e7eb;height:52px;display:flex;align-items:center;padding:0 14px;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.tn{width:100%;display:flex;align-items:center;justify-content:space-between;min-width:0}.topnav .brand{display:flex!important;align-items:center;gap:8px;min-width:0}.topnav .brand img{flex-shrink:0}
+.brand{font-size:18px;font-weight:900;color:#1a1a1a;letter-spacing:-0.5px}
+.brand span{color:#f97316}
+.secure-badge{display:flex;align-items:center;gap:5px;font-size:10px;color:#15803d;font-weight:700;background:#f0fdf4;padding:5px 10px;border-radius:30px;border:1px solid #bbf7d0}
+
+.wrap{width:100%;padding:14px 12px 32px;display:flex;flex-direction:column;gap:14px}
+
+@media(min-width:768px){
+  .wrap{display:grid!important;grid-template-columns:38% 1fr;gap:0 20px;padding:24px 28px 48px;align-items:start}
+  .col-left{position:sticky;top:72px;display:flex;flex-direction:column;gap:14px;grid-column:1;grid-row:1/99}
+  .col-right{grid-column:2;display:flex;flex-direction:column;gap:14px}
+}
+
+.block-creator{order:1}
+.block-plans{order:2}
+.block-payment-logos{order:3}
+.block-disclaimer{order:4}
+.block-features{order:5}
+.block-testi{order:6}
+
+.creator-card{background:linear-gradient(150deg,#1e3a8a 0%,#1d4ed8 45%,#2563eb 75%,#3b82f6 100%);border-radius:20px;padding:20px 16px 18px;color:#fff;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(29,78,216,0.35)}
+.creator-card::before{content:"";position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.creator-card::after{content:"";position:absolute;bottom:-35px;left:-35px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cbytag{display:flex;align-items:center;gap:6px;font-size:11px;opacity:0.75;margin-bottom:14px;position:relative;z-index:1;text-transform:uppercase;letter-spacing:0.8px;font-weight:700}
+.vcheck{width:18px;height:18px;background:#22c55e;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.card-inner{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;gap:14px}
+.vip-ring{width:110px;height:110px;border-radius:50%;padding:3px;background:linear-gradient(135deg,rgba(255,215,0,0.8),rgba(255,255,255,0.5),rgba(255,215,0,0.6));box-shadow:0 0 0 2px rgba(255,255,255,0.2),0 8px 28px rgba(0,0,0,0.4);animation:halo 3s ease-in-out infinite}
+@keyframes halo{0%,100%{box-shadow:0 0 0 2px rgba(255,255,255,0.2),0 0 20px rgba(255,200,50,0.4),0 8px 28px rgba(0,0,0,0.4)}50%{box-shadow:0 0 0 6px rgba(255,255,255,0.1),0 0 40px rgba(255,200,50,0.75),0 8px 28px rgba(0,0,0,0.4)}}
+.vip-img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.edu-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);border-radius:30px;padding:6px 18px;font-size:11px;font-weight:700}
+.live-box{background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);border-radius:14px;padding:12px 24px;display:flex;align-items:center;gap:12px;width:100%}
+.ldot{width:9px;height:9px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:lpulse 1.6s ease-in-out infinite}
+@keyframes lpulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,0.3)}50%{box-shadow:0 0 0 7px rgba(74,222,128,0.1)}}
+.live-lbl{font-size:10px;opacity:0.72;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;font-weight:700}
+.live-num{font-size:28px;font-weight:900;color:#4ade80;font-variant-numeric:tabular-nums;line-height:1.1}
+
+.trust-row{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.trust-row::-webkit-scrollbar{display:none}
+.tbadge{display:flex;align-items:center;gap:5px;background:#fff;border:1px solid #e5e7eb;border-radius:30px;padding:7px 12px;font-size:10px;font-weight:800;color:#374151;white-space:nowrap;flex-shrink:0}
+
+.plan-card{background:#fff;border-radius:16px;padding:16px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid transparent;position:relative;overflow:hidden;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.07);transition:all 0.2s}
+.plan-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#f97316,#a855f7);border-radius:4px 0 0 4px}
+.plan-card.popular{border-color:#f97316;background:linear-gradient(135deg,#fffaf6,#fff)}
+.poptag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#f97316,#fb923c);color:#fff;font-size:9px;font-weight:900;padding:3px 18px;border-radius:0 0 10px 10px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.star-rib{position:absolute;top:-2px;right:14px;background:linear-gradient(160deg,#f59e0b,#fbbf24);color:#fff;font-size:12px;width:26px;height:36px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;clip-path:polygon(0 0,100% 0,100% 82%,50% 100%,0 82%)}
+.pname{font-size:13px;font-weight:900;color:#111;margin-bottom:2px}
+.pprice-row{display:flex;align-items:baseline;gap:5px;margin-bottom:4px}
+.pprice{font-size:22px;font-weight:900;color:#111;letter-spacing:-0.6px}
+.pdur{font-size:12px;color:#9ca3af;font-weight:600}
+.plive{display:flex;align-items:center;gap:4px;font-size:10px;color:#16a34a;font-weight:700}
+.mdot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:lpulse 1.6s ease-in-out infinite;flex-shrink:0}
+.buybtn{background:linear-gradient(135deg,#f97316 0%,#ea580c 35%,#a855f7 100%);color:#fff;border:none;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:900;cursor:pointer;font-family:"Nunito",sans-serif;box-shadow:0 4px 14px rgba(249,115,22,0.38);white-space:nowrap;transition:transform 0.2s}
+.buybtn:active{transform:scale(0.96)}
+
+/* PAYMENT LOGOS */
+.pay-card{background:#fff;border-radius:14px;padding:14px 14px 12px;box-shadow:0 1px 6px rgba(0,0,0,0.06);text-align:center}
+.sec-txt{font-size:11.5px;color:#6b7280;margin-bottom:12px;font-weight:600}
+.sg{color:#16a34a;font-weight:800}.so{color:#f97316;font-weight:800}
+.logo-carousel{overflow:hidden;position:relative;background:#f9fafb;border-radius:10px;border:1px solid #f0f0f0;padding:10px 0}
+.logo-carousel::before,.logo-carousel::after{content:"";position:absolute;top:0;bottom:0;width:30px;z-index:2;pointer-events:none}
+.logo-carousel::before{left:0;background:linear-gradient(to right,#f9fafb,transparent)}
+.logo-carousel::after{right:0;background:linear-gradient(to left,#f9fafb,transparent)}
+.logo-track{display:flex;align-items:center;animation:scrollogo 18s linear infinite;width:max-content}
+.logo-item{flex-shrink:0;padding:4px 14px;display:flex;align-items:center;justify-content:center;border-right:1px solid #eee}
+@keyframes scrollogo{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* DISCLAIMER */
+.disc-card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 1px 6px rgba(0,0,0,0.06)}
+.ctitle{font-size:11px;font-weight:900;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px;color:#6b7280}
+.disc-inner{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px}
+.disc-inner .dh{font-size:12px;font-weight:800;color:#0f172a;margin-bottom:4px}
+.disc-inner p{font-size:11.5px;color:#64748b;line-height:1.7}
+.disc-inner a{color:#2563eb;text-decoration:none;font-weight:700}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:768px){.feat-grid{grid-template-columns:repeat(4,1fr)}}
+.fcard{background:#fff;border-radius:14px;padding:16px 10px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.ficon{font-size:28px;margin-bottom:8px}
+.fname{font-size:12px;font-weight:900;color:#111}
+.fsub{font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600}
+
+/* TESTIMONIALS */
+.testi{background:#fff;border-radius:16px;padding:18px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.sec-hd{font-size:13px;font-weight:900;color:#111;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-hd::after{content:"";flex:1;height:1px;background:#f1f5f9}
+.t-outer{overflow:hidden;border-radius:10px}
+.t-track{display:flex;gap:10px;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1)}
+.t-slide{min-width:100%;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:10px;padding:16px;border:1px solid #bae6fd}
+.t-stars{color:#f59e0b;font-size:14px;margin-bottom:8px;letter-spacing:2px}
+.t-text{font-size:12px;color:#374151;line-height:1.7;margin-bottom:10px;font-style:italic}
+.t-auth{font-size:11px;font-weight:800;color:#1d4ed8}
+.t-dots{display:flex;justify-content:center;gap:5px;margin-top:12px}
+.tdot{width:6px;height:6px;border-radius:50%;background:#d1d5db;cursor:pointer;transition:all 0.25s}
+.tdot.active{background:#f97316;width:20px;border-radius:3px}
+.t-nav{display:flex;justify-content:flex-end;gap:6px;margin-top:10px}
+.tnbtn{width:30px;height:30px;border:1.5px solid #e5e7eb;border-radius:50%;background:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+
+.footer{background:#1a1a1a;padding:24px 16px;text-align:center;margin-top:4px}
+.footer p{font-size:11px;color:#9ca3af;line-height:1.9}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:30px;font-size:12px;font-weight:700;opacity:0;transition:all 0.32s;pointer-events:none;z-index:999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.25)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="tn">
+    <div class="brand" style="display:flex;align-items:center;gap:8px"><img src="premium-channel-logo.jpg" alt="Premium Channel Logo" style="width:40px;height:40px;min-width:40px;object-fit:contain;border-radius:50%;display:block;background:#08072b" onerror="this.style.display='none'"><span style="color:#111">VIP <span style="color:#f97316">Premium</span> Member</span></div>
+    <div class="secure-badge">🔒 100% Secure</div>
+  </div>
+</nav>
+
+<div class="wrap" id="mainWrap">
+
+  <!-- 1. CREATOR CARD -->
+  <div class="block-creator">
+    <div class="creator-card">
+      <div class="cbytag"><div class="vcheck">✓</div> Created By</div>
+      <div class="card-inner">
+        <div class="vip-ring">
+          <img class="vip-img" src="premium-channel-logo.jpg" alt="Premium Channel Logo">
+        </div>
+        <div class="edu-pill">🎓 Education</div>
+        <div class="live-box">
+          <div class="ldot"></div>
+          <div>
+            <div class="live-lbl">Live Members</div>
+            <div class="live-num" id="totalLive">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. TRUST + PLANS -->
+  <div class="block-plans">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="trust-row">
+        <div class="tbadge">🔒 256-bit SSL</div>
+        <div class="tbadge">⚡ Instant Access</div>
+        <div class="tbadge">✅ Verified Creator</div>
+        <div class="tbadge">🇮🇳 India Trusted</div>
+        <div class="tbadge">💬 24/7 Support</div>
+      </div>
+  
+
+      <div class="plan-card" onclick="pay('https://onetapay.com/pp/MjE2MQ==')">
+        <div class="pinfo">
+          <div class="pname">Yearly Plan</div>
+          <div class="pprice-row"><div class="pprice">₹ 2,999.00</div><div class="pdur">/ 12 Months</div></div>
+          <div class="plive"><div class="mdot"></div><span id="c2">0</span>&thinsp;members active</div>
+        </div>
+        <button class="buybtn" onclick="event.stopPropagation();pay('https://onetapay.com/pp/MjE2MQ==')">Buy Now</button>
+      </div>
+
+      <div class="plan-card popular" onclick="pay('https://onetapay.com/pp/MjE2Mg==')">
+        <div class="poptag">⭐ Most Popular</div>
+        <div class="star-rib">★</div>
+        <div class="pinfo" style="margin-top:16px">
+          <div class="pname" style="color:#f97316">Life Time</div>
+          <div class="pprice-row"><div class="pprice">₹ 3,999.00</div><div class="pdur">/ Life time</div></div>
+          <div class="plive"><div class="mdot"></div><span id="c3">0</span>&thinsp;members active</div>
+        </div>
+        <button class="buybtn" style="margin-top:16px" onclick="event.stopPropagation();pay('https://onetapay.com/pp/MjE2Mg==')">Buy Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PAYMENT LOGOS -->
+  <div class="block-payment-logos">
+    <div class="pay-card">
+      <div class="sec-txt">Guaranteed <span class="sg">safe</span> and <span class="so">secure</span> payment</div>
+      <div class="logo-carousel">
+        <div class="logo-track">
+          <!-- Paytm -->
+          <div class="logo-item"><span style="font-size:15px;font-weight:900;color:#00BAF2;letter-spacing:-0.5px;font-family:Arial,sans-serif">Pay<span style="color:#002970">tm</span></span></div>
+          <!-- Google Pay -->
+          <div class="logo-item"><span style="font-size:13px;font-weight:800;font-family:Arial,sans-serif"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span> <span style="color:#5f6368">Pay</span></span></div>
+          <!-- UPI -->
+          <div class="logo-item"><span style="font-size:13px;font-weight:900;font-family:Arial,sans-serif;background:linear-gradient(135deg,#7B3FBE,#097939);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">UPI</span></div>
+          <!-- Mastercard -->
+          <div class="logo-item" style="gap:3px;display:flex;align-items:center">
+            <span style="width:18px;height:18px;border-radius:50%;background:#EB001B;display:inline-block;opacity:0.95"></span>
+            <span style="width:18px;height:18px;border-radius:50%;background:#F79E1B;display:inline-block;margin-left:-8px;opacity:0.9"></span>
+            <span style="font-size:10px;font-weight:800;color:#333;margin-left:4px;font-family:Arial,sans-serif">MC</span>
+          </div>
+          <!-- PhonePe -->
+          <div class="logo-item"><span style="font-size:13px;font-weight:900;color:#5f259f;font-family:Arial,sans-serif">Phone<span style="color:#8b2fc9">Pe</span></span></div>
+          <!-- VISA -->
+          <div class="logo-item"><span style="font-size:15px;font-weight:900;color:#1A1F71;font-family:Arial,sans-serif;letter-spacing:-1px">VISA</span></div>
+          <!-- Rupay -->
+          <div class="logo-item"><span style="font-size:13px;font-weight:900;font-family:Arial,sans-serif"><span style="color:#e2651c">Ru</span><span style="color:#1e8bc3">Pay</span></span></div>
+          <!-- Net Banking -->
+          <div class="logo-item"><span style="font-size:11px;font-weight:800;color:#374151;font-family:Arial,sans-serif">🏦 Net Banking</span></div>
+          <!-- duplicate set for seamless loop -->
+          <div class="logo-item"><span style="font-size:15px;font-weight:900;color:#00BAF2;letter-spacing:-0.5px;font-family:Arial,sans-serif">Pay<span style="color:#002970">tm</span></span></div>
+          <div class="logo-item"><span style="font-size:13px;font-weight:800;font-family:Arial,sans-serif"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span> <span style="color:#5f6368">Pay</span></span></div>
+          <div class="logo-item"><span style="font-size:13px;font-weight:900;font-family:Arial,sans-serif;background:linear-gradient(135deg,#7B3FBE,#097939);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">UPI</span></div>
+          <div class="logo-item" style="gap:3px;display:flex;align-items:center">
+            <span style="width:18px;height:18px;border-radius:50%;background:#EB001B;display:inline-block;opacity:0.95"></span>
+            <span style="width:18px;height:18px;border-radius:50%;background:#F79E1B;display:inline-block;margin-left:-8px;opacity:0.9"></span>
+            <span style="font-size:10px;font-weight:800;color:#333;margin-left:4px;font-family:Arial,sans-serif">MC</span>
+          </div>
+          <div class="logo-item"><span style="font-size:13px;font-weight:900;color:#5f259f;font-family:Arial,sans-serif">Phone<span style="color:#8b2fc9">Pe</span></span></div>
+          <div class="logo-item"><span style="font-size:15px;font-weight:900;color:#1A1F71;font-family:Arial,sans-serif;letter-spacing:-1px">VISA</span></div>
+          <div class="logo-item"><span style="font-size:13px;font-weight:900;font-family:Arial,sans-serif"><span style="color:#e2651c">Ru</span><span style="color:#1e8bc3">Pay</span></span></div>
+          <div class="logo-item"><span style="font-size:11px;font-weight:800;color:#374151;font-family:Arial,sans-serif">🏦 Net Banking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. DISCLAIMER -->
+  <div class="block-disclaimer">
+    <div class="disc-card">
+      <div class="ctitle">Description</div>
+      <div class="disc-inner">
+        <div class="dh">Disclaimer</div>
+        <p>Join our exclusive VIP premium membership to unlock premium features, expert insights, and high-value content designed to help you grow faster and smarter. <a href="#">Learn more</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FEATURES -->
+  <div class="block-features">
+    <div class="feat-grid">
+      <div class="fcard"><div class="ficon">📈</div><div class="fname">Live Signals</div><div class="fsub">Real-time alerts</div></div>
+      <div class="fcard"><div class="ficon">🎓</div><div class="fname">Education</div><div class="fsub">Expert sessions</div></div>
+      <div class="fcard"><div class="ficon">💬</div><div class="fname">VIP Group</div><div class="fsub">Private Telegram</div></div>
+      <div class="fcard"><div class="ficon">🔒</div><div class="fname">Secure Pay</div><div class="fsub">256-bit SSL</div></div>
+    </div>
+  </div>
+
+  <!-- 6. TESTIMONIALS -->
+  <div class="block-testi">
+    <div class="testi">
+      <div class="sec-hd">What Members Say</div>
+      <div class="t-outer">
+        <div class="t-track" id="tTrack">
+          <div class="t-slide">
+            <div class="t-stars">★★★★★</div>
+            <div class="t-text">"Signals are incredibly accurate. Made ₹42,000 profit in my very first month! Best trading community I have ever joined."</div>
+            <div class="t-auth">— Ravi K., Mumbai</div>
+          </div>
+          <div class="t-slide">
+            <div class="t-stars">★★★★★</div>
+            <div class="t-text">"Education content is worth 10x the price. Went from a complete beginner to confidently trading in just 3 months!"</div>
+            <div class="t-auth">— Priya S., Delhi</div>
+          </div>
+          <div class="t-slide">
+            <div class="t-stars">★★★★★</div>
+            <div class="t-text">"Always responsive in the VIP group. Live weekend sessions are extremely valuable. Everyone should join this community!"</div>
+            <div class="t-auth">— Aakash T., Pune</div>
+          </div>
+          <div class="t-slide">
+            <div class="t-stars">★★★★★</div>
+            <div class="t-text">"Yearly plan is the best value for money. Consistent signals, excellent support. Totally worth every single rupee!"</div>
+            <div class="t-auth">— Suman R., Bangalore</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-dots" id="tDots"></div>
+      <div class="t-nav">
+        <button class="tnbtn" id="tPrev">‹</button>
+        <button class="tnbtn" id="tNext">›</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>© 2026 vip premium membership. All rights reserved.<br>Join, learn, and grow with our exclusive VIP network.</p>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PLANS=[{id:"c1",start:1287},{id:"c2",start:974},{id:"c3",start:4421}];
+const TOTAL=PLANS.reduce((s,p)=>s+p.start,0);
+const fmt=n=>n.toLocaleString("en-IN");
+function animUp(id,target){
+  const el=document.getElementById(id);if(!el)return;
+  let v=0,step=Math.max(1,Math.ceil(target/44));
+  const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=fmt(v);if(v>=target)clearInterval(t);},18);
+}
+PLANS.forEach(p=>animUp(p.id,p.start));
+animUp("totalLive",TOTAL);
+setTimeout(()=>{
+  PLANS.forEach(p=>p.cur=p.start);
+  let tv=TOTAL;
+  setInterval(()=>{
+    PLANS.forEach(p=>{p.cur++;const el=document.getElementById(p.id);if(el)el.textContent=fmt(p.cur);});
+    tv+=Math.floor(Math.random()*3)+1;
+    const el=document.getElementById("totalLive");
+    if(el)el.textContent=fmt(tv);
+  },2000);
+},950);
+
+function pay(url){
+  showToast("🔒 Redirecting to secure payment...");
+  setTimeout(()=>window.open(url,"_blank"),380);
+}
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2800);
+}
+(function(){
+  const slides=document.querySelectorAll(".t-slide");
+  const track=document.getElementById("tTrack");
+  const dotsW=document.getElementById("tDots");
+  let cur=0,total=slides.length,auto;
+  slides.forEach((_,i)=>{
+    const d=document.createElement("div");
+    d.className="tdot"+(i===0?" active":"");
+    d.onclick=()=>{go(i);reset();};
+    dotsW.appendChild(d);
+  });
+  function go(i){
+    cur=(i+total)%total;
+    track.style.transform="translateX(calc(-"+cur*100+"% - "+cur*10+"px))";
+    document.querySelectorAll(".tdot").forEach((d,j)=>d.className="tdot"+(j===cur?" active":""));
+  }
+  function reset(){clearInterval(auto);auto=setInterval(()=>go(cur+1),4500);}
+  document.getElementById("tNext").onclick=()=>{go(cur+1);reset();};
+  document.getElementById("tPrev").onclick=()=>{go(cur-1);reset();};
+  let sx=0;
+  const outer=document.querySelector(".t-outer");
+  outer.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
+  outer.addEventListener("touchend",e=>{const dx=sx-e.changedTouches[0].clientX;if(Math.abs(dx)>40){go(dx>0?cur+1:cur-1);reset();}});
+  reset();
+})();
+</script>
+</body>
+
+
+</html>
