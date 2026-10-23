@@ -1,0 +1,28 @@
+PREMIUM CHANNEL CHECKOUT — PAYMENT PROOF WORKFLOW
+
+WHAT THIS ZIP DOES
+- Shows the payment screenshot form 60 seconds after checkout loads.
+- Collects the user's WhatsApp number and JPG/PNG/WebP screenshot (max 8 MB).
+- Sends the screenshot plus plan, displayed amount, and WhatsApp number to the configured owner Telegram chat.
+- Owner manually verifies payment in their genuine merchant/UPI app, then sends the private invite link to the user on WhatsApp.
+
+IMPORTANT LIMITS
+- This does NOT automatically verify payments and does NOT automatically send WhatsApp messages or invite links.
+- The included QR is a DEMO and is not payable. Replace it with your own verified merchant QR or connect an official payment gateway before accepting money.
+- Do not claim that an upload confirms payment. Check the actual credited transaction before granting access.
+
+DEPLOY TO VERCEL
+1. Extract the whole ZIP and deploy the folder/project to Vercel.
+2. Vercel will install the dependency from package.json. Ensure the `api/payment-proof.js` file is included.
+3. In Vercel Project Settings > Environment Variables, add:
+   TELEGRAM_BOT_TOKEN = token from BotFather (keep secret; never put it in HTML)
+   TELEGRAM_OWNER_CHAT_ID = private chat/group ID where proof submissions should arrive
+4. Ensure the bot can message that chat. For a private chat, the owner must start the bot first. For a group, add the bot and use that group's chat ID.
+5. Redeploy after setting environment variables.
+6. Test with a small harmless image; check Telegram receives the image, plan, amount, and WhatsApp number.
+
+SECURITY / PRIVACY
+- Keep the bot token only in Vercel server-side environment variables. Never publish it in frontend code or a ZIP.
+- Proof screenshots and phone numbers are personal data. Restrict the Telegram destination to the owner and delete submissions when no longer needed.
+- Upload endpoint accepts image types only and limits uploads to 8 MB.
+- Static previews opened as local files will not submit; the API works after deployment on Vercel.
