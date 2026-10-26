@@ -2,4 +2,4 @@ PhonePe button setup
 
 A Pay with PhonePe button was added to checkout.html. It uses the supplied UPI ID priya.2156@ptyes and passes the selected checkout amount from the URL. It attempts to open PhonePe, with a generic UPI fallback. This works best on Android devices with a UPI app installed.
 
-IMPORTANT: UPI ID ownership and validity were not verified. Before accepting payments, test a small payment and verify the payee name in the UPI app. The QR image in this ZIP is still a DEMO QR and is not payable; replace it with your verified real merchant QR before publishing. Do not rely on screenshots alone to verify payment.
+IMPORTANT: UPI ID ownership and validity were not verified. Before accepting payments, test a small payment and verify the payee name in the UPI app. The QR image in this ZIP is still a  replace it with your verified real merchant QR before publishing. Do not rely on screenshots alone to verify payment.
