@@ -168,18 +168,34 @@ body{font-family:"Nunito",sans-serif;background:#eef0f3;color:#1a1a1a;min-height
         <button class="buybtn" onclick="event.stopPropagation();pay('Yearly Plan',2999)">Buy Now</button>
       </div>
 
-      <div class="plan-card popular" onclick="pay('1 Year's,3999)">
-        <div class="poptag">⭐ Most Popular</div>
-        <div class="star-rib">★</div>
-        <div class="pinfo" style="margin-top:16px">
-          <div class="pname" style="color:#f97316">1 Year's</div>
-          <div class="pprice-row"><div class="pprice">₹ 5,999.00</div><div class="pdur">/ 1 Year's</div></div>
-          <div class="plive"><div class="mdot"></div><span id="c3">0</span>&thinsp;members active</div>
-        </div>
-        <button class="buybtn" style="margin-top:16px" onclick="event.stopPropagation();pay('1 Year's',3999)">Buy Now</button>
-      </div>
+      ```html
+<div class="plan-card popular" onclick="pay('1 Year', 3999)">
+  <div class="poptag">⭐ Most Popular</div>
+  <div class="star-rib">★</div>
+
+  <div class="pinfo" style="margin-top:16px">
+    <div class="pname" style="color:#f97316">1 Year</div>
+
+    <div class="pprice-row">
+      <div class="pprice">₹ 3,999.00</div>
+      <div class="pdur">/ 1 Year</div>
+    </div>
+
+    <div class="plive">
+      <div class="mdot"></div>
+      <span id="c3">0</span>&thinsp;members active
     </div>
   </div>
+
+  <button
+    type="button"
+    class="buybtn"
+    style="margin-top:16px"
+    onclick="event.stopPropagation(); pay('1 Year', 3999)">
+    Buy Now
+  </button>
+</div>
+```
 
   <!-- 3. PAYMENT LOGOS -->
   <div class="block-payment-logos">
