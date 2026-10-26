@@ -159,49 +159,27 @@ body{font-family:"Nunito",sans-serif;background:#eef0f3;color:#1a1a1a;min-height
       </div>
   
 
-    ```html
-<div class="plan-card">
-  <div class="pinfo">
-    <div class="pname">3 Month's Plan</div>
-    <div class="pprice-row">
-      <div class="pprice">₹ 2,999.00</div>
-      <div class="pdur">/ 3 Months</div>
-    </div>
-    <div class="plive">
-      <div class="mdot"></div>
-      <span id="c2">0</span>&thinsp;members active
-    </div>
-  </div>
+    <div class="plan-card" onclick="pay('3 Month's Plan',2999)">
+        <div class="pinfo">
+          <div class="pname">3 Month's Plan</div>
+          <div class="pprice-row"><div class="pprice">₹ 2,999.00</div><div class="pdur">/ 3 Months</div></div>
+          <div class="plive"><div class="mdot"></div><span id="c2">0</span>&thinsp;members active</div>
+        </div>
+        <button class="buybtn" onclick="event.stopPropagation();pay('Yearly Plan',2999)">Buy Now</button>
+      </div>
 
-  <button type="button" class="buybtn"
-    onclick="pay('3 Months Plan', 2999)">
-    Buy Now
-  </button>
-</div>
-
-<div class="plan-card popular">
-  <div class="poptag">⭐ Most Popular</div>
-  <div class="star-rib">★</div>
-
-  <div class="pinfo" style="margin-top:16px">
-    <div class="pname" style="color:#f97316">1 Year's</div>
-    <div class="pprice-row">
-      <div class="pprice">₹ 5,999.00</div>
-      <div class="pdur">/ 1 Year's</div>
-    </div>
-    <div class="plive">
-      <div class="mdot"></div>
-      <span id="c3">0</span>&thinsp;members active
+     <div class="plan-card popular" onclick="pay('1 Year's,3999)">
+        <div class="poptag">⭐ Most Popular</div>
+        <div class="star-rib">★</div>
+        <div class="pinfo" style="margin-top:16px">
+          <div class="pname" style="color:#f97316">1 Year's</div>
+          <div class="pprice-row"><div class="pprice">₹ 5,999.00</div><div class="pdur">/ 1 Year's</div></div>
+          <div class="plive"><div class="mdot"></div><span id="c3">0</span>&thinsp;members active</div>
+        </div>
+        <button class="buybtn" style="margin-top:16px" onclick="event.stopPropagation();pay('1 Year's',3999)">Buy Now</button>
+      </div>
     </div>
   </div>
-
-  <button type="button" class="buybtn"
-    style="margin-top:16px"
-    onclick="pay('1 Year', 3999)">
-    Buy Now
-  </button>
-</div>
-```
 
   <!-- 3. PAYMENT LOGOS -->
   <div class="block-payment-logos">
